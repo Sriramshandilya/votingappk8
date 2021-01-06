@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-service
+  labels:
+    name: voting-service
+    app: demo-voting-app
+spec:
+  type: NodePort # Load balancer will be used in cloud providers, CluserIP used fo with in the services like backend services
+  ports:
+    - port: 80
+      targetPort: 80
+  #link the service to pods
+  selector:
+    name: voting-pod
+    app: demo-voting-app
